@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using MpCertificadoVrs2.data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +15,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
-app.UseCors(opcoes => opcoes.AllowAnyOrigin().AllowAnyHeader());
+app.UseCors(opcoes => opcoes
+    .WithOrigins("http://localhost:4200") // endereço do front
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowCredentials());
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

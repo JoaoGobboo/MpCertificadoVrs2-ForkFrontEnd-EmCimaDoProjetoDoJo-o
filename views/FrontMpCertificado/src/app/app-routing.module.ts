@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CertificadoAnunciosComponent } from './components/certificado-anuncios/certificado-anuncios.component';
 
+import { CertificadoAnuncioComponent } from './components/certificado-anuncio/certificado-anuncio.component';
 
 const routes: Routes = [
-  { path: 'certificado-anuncios', component: CertificadoAnunciosComponent },
-  // Adicione outras rotas conforme necessário
+  {path: 'certificadoAnuncio', component: CertificadoAnuncioComponent},
 ];
 
 @NgModule({

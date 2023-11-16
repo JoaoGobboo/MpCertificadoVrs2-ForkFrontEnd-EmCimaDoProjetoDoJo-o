@@ -1,20 +1,19 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CertificadoAnuncio } from './CertificadoAnuncio';
+import { CertificadoAnuncio } from 'src/models/CertificadoAnuncio';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type' : 'application/json'
   })
-};
+}
 
 @Injectable({
   providedIn: 'root'
 })
-export class CertificadoAnunciosService {
-  apiUrl = 'http://localhost:5000/CertificadoAnuncio';
-
+export class CertificadoAnuncioService {
+  apiUrl = 'http://localhost:5000/api/CertificadoAnuncio';
   constructor(private http: HttpClient) { }
 
   listar(): Observable<CertificadoAnuncio[]> {
@@ -22,8 +21,8 @@ export class CertificadoAnunciosService {
     return this.http.get<CertificadoAnuncio[]>(url);
   }
 
-  buscar(IdCertificadoA: string): Observable<CertificadoAnuncio> {
-    const url = `${this.apiUrl}/buscar/${IdCertificadoA}`;
+  buscar(idCertificadoAnuncio: number): Observable<CertificadoAnuncio> {
+    const url = `${this.apiUrl}/buscar/${idCertificadoAnuncio}`;
     return this.http.get<CertificadoAnuncio>(url);
   }
 
@@ -32,13 +31,13 @@ export class CertificadoAnunciosService {
     return this.http.post<CertificadoAnuncio>(url, certificadoAnuncio, httpOptions);
   }
 
-  atualizar(certificadoAnuncio: CertificadoAnuncio): Observable<any> {
-    const url = `${this.apiUrl}/atualizar`;
+  alterar(certificadoAnuncio: CertificadoAnuncio): Observable<any> {
+    const url = `${this.apiUrl}/alterar`;
     return this.http.put<CertificadoAnuncio>(url, certificadoAnuncio, httpOptions);
   }
 
-  excluir(IdCertificadoA: string): Observable<any> {
-    const url = `${this.apiUrl}/buscar/${IdCertificadoA}`;
+  excluir(idCertificadoAnuncio: number): Observable<any> {
+    const url = `${this.apiUrl}/excluir/${idCertificadoAnuncio}`;
     return this.http.delete<string>(url, httpOptions);
   }
 }

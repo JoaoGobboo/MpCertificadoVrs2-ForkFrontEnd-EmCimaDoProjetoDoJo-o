@@ -1,0 +1,132 @@
+<header>
+  <h1 class="page-title">CRUD Certificado de Anúncio</h1>
+</header>
+
+<div class="container p-5">
+  <div class="row">
+    <!-- Listar -->
+    <div class="col-6 border border-light rounded p-5 shadow">
+      <h6 class="title-fontsize">Lista Certificados de Anúncio</h6>
+      <table class="table table-striped" *ngIf="listaCertificados && listaCertificados.length > 0">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Outras Propriedades...</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let certificado of listaCertificados">
+            <td>{{ certificado.idCertificadoAnuncio }}</td>
+            <!-- Adicione outras colunas conforme necessário -->
+          </tr>
+        </tbody>
+      </table>
+      <div class="form-group">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button type="button" class="btn btn-primary" (click)="listar()">Listar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buscar por ID -->
+    <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formularioBuscar">
+      <h6 class="title-fontsize">Buscar Certificado de Anúncio por ID</h6>
+      <form [formGroup]="formularioBuscar" (ngSubmit)="buscar()">
+        <div class="form-group">
+          <label class="bold">ID do Certificado</label>
+          <input type="number" class="form-control form-control-sm" formControlName="idCertificadoAnuncio" />
+        </div>
+        <div class="form-group">
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="button" class="btn btn-sm btn-primary" (click)="buscar()">Buscar por ID</button>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <table class="table table-striped" *ngIf="certificadoEncontrado">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Outras Propriedades...</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="certificadoEncontrado">
+                  <td>{{ certificadoEncontrado.idCertificadoAnuncio }}</td>
+                  <!-- Adicione outras colunas conforme necessário -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Cadastrar -->
+    <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formulario">
+      <h6 class="title-fontsize">Cadastrar Certificado de Anúncio</h6>
+      <form [formGroup]="formulario" (ngSubmit)="cadastrar()">
+        <div class="form-group">
+          <label class="bold">Id do Certificado</label>
+          <div>Preenchido automaticamente</div>
+        </div>
+        <!-- Adicione outros campos conforme necessário -->
+        <div class="container">
+          <div class="row">
+            <div>
+              <button type="cadastrar" class="btn btn-sm btn-primary">Cadastrar</button>
+            </div>
+            <div class="pl-1">
+              <button type="button" #cancelarButton (click)="reloadPage()"
+                class="btn btn-sm btn-light">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Alterar Certificado de Anúncio -->
+    <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formulario">
+      <h6 class="title-fontsize">Alterar Certificado de Anúncio</h6>
+      <form [formGroup]="formulario" (ngSubmit)="alterar()">
+        <div class="form-group">
+          <label class="bold">Id do Certificado</label>
+          <input type="number" class="form-control form-control-sm" formControlName="idCertificadoAnuncio" />
+        </div>
+        <!-- Adicione outros campos conforme necessário -->
+        <div class="container">
+          <div class="row">
+            <div>
+              <button type="submit" class="btn btn-sm btn-primary">Alterar</button>
+            </div>
+            <div class="pl-1">
+              <button type="button" #cancelarButton (click)="reloadPage()" class="btn btn-sm btn-light">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Excluir Certificado de Anúncio -->
+    <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formulario">
+      <h6 class="title-fontsize">Excluir Certificado de Anúncio</h6>
+      <form [formGroup]="formulario" (ngSubmit)="excluir()">
+        <div class="form-group">
+          <label class="bold">Id do Certificado</label>
+          <input type="number" class="form-control form-control-sm" formControlName="idCertificadoAnuncio" />
+        </div>
+        <div class="container">
+          <div class="row">
+            <div>
+              <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+            </div>
+            <div class="pl-1">
+              <button type="button" #cancelarButton (click)="reloadPage()" class="btn btn-sm btn-light">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
